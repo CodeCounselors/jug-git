@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>reveal.js – The HTML Presentation Framework</title>
+    <title>Central PA JUG July 2017 - Subverting to Git</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -67,13 +67,150 @@
                     <li>Apr 2005 - Git Released</li>
                     <li>Feb 2008 - GitHub Launches</li>
                     <li>May 2008 - CVS Last Updated</li>
+                    <li>Jul 2017 - This Talk Happens</li>
                 </ul>
             </section>
         </section>
 
         <section>
-            <h1>GitHub by the Numbers</h1>
-            https://octoverse.github.com/
+            <h2>Subverting to Git...</h2>
+            <img class="stretch" src="https://www.git-tower.com/learn/content/01-git/01-ebook/en/01-command-line/07-appendix/03-from-subversion-to-git/centralized-vs-distributed.png" >
+            <aside class="notes" data-markdown>
+                <textarea data-template>
+                    1. Git is not trivial, BUT you already know most of the concepts.
+                    1. Checkout(Clone), Commit, Pull(update)
+                    1. But not all of them, and not by the same name
+                    1. Push, Fetch, Rebase, Stash
+                </textarea>
+            </aside>
+        </section>
+
+        <section>
+            <h2>The Case For Git</h2>
+            <ul>
+                <li>Most companies are using Git</li>
+                <li>Open Source is on GitHub</li>
+                <li>Offline Support</li>
+                <li>Better Workflows</li>
+            </ul>
+            <aside class="notes">
+                <ul>
+                    <li>Personal Experience, Interviewing</li>
+                    <li>Virtually all open source is there, see #1</li>
+                    <li>Don't need a connection (underground bunker, VPN)</li>
+                    <li>Workflows: branching is cheap, yes - but it is easy.
+                        And rebasing/squashing commits gives a lot of development flexibility
+                        (commit early, commit often -> but then consolidate)
+                    </li>
+                </ul>
+            </aside>
+        </section>
+
+        <section>
+            <section>
+                <h2>Git Cloud Providers</h2>
+                <ul>
+                    <li>GitHub</li>
+                    <li>Bitbucket</li>
+                    <li>GitLab</li>
+                </ul>
+            </section>
+            <section>
+                <h2>GitHub by the Numbers</h2>
+                https://octoverse.github.com/
+            </section>
+        </section>
+
+        <section>
+            <h2>Git Tools</h2>
+            <section>
+                <h3>Clients</h3>
+                <ol>
+                    <li>Source Tree</li>
+                    <li><a href="https://git-for-windows.github.io/">Git for Windows</a></li>
+                    <li>Tortoise SVN</li>
+                    <li>Git Kracken</li>
+                    <li>Tower</li>
+                    <li>and many others</li>
+                </ol>
+            </section>
+            <section>
+                <h3>bash/zsh tab completion</h3>
+            </section>
+        </section>
+
+        <section>
+            <h2>Let's Git Going</h2>
+            <section>
+                <h3>Clone</h3>
+                <pre>
+                    <code class="hljs" data-trim contenteditable>
+git clone https://github.com/CodeCounselors/jug-git.git
+					</code>
+                    <code class="hljs" data-trim contenteditable>
+git clone git@github.com:CodeCounselors/jug-git.git
+					</code>
+                </pre>
+            </section>
+            <section>
+                <h3>Checkout</h3>
+            </section>
+            <section>
+                <h3>Branch</h3>
+            </section>
+            <section>
+                <h3></h3>
+            </section>
+            <section>
+                <h3></h3>
+            </section>
+            <section>
+                <h3></h3>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Stop the Music</h2>
+                <h4>Let's Make Life Easier</h4>
+            </section>
+
+                <section>
+                    <h2>We can create some aliases</h2>
+                <pre>
+                    <code class="hljs fragment" data-trim contenteditable>
+vi ~/.gitrc
+                    </code>
+                    <code class="hljs fragment" data-trim contenteditable>
+alias   g='hub'
+#Basic Git Commands
+alias gb='g branch -vv'
+alias gc='g checkout'
+alias gpush='g push --follow-tags'
+#Diff
+alias gd='g diff'
+alias gds='gd --staged'
+                    </code>
+                    <code class="hljs fragment" data-trim contenteditable>
+vi ~/.zshrc
+                    </code>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>What You Need to Know</h2>
+                <h6>And perhaps some of what you don't</h6>
+            </section>
+            <section>
+                <h2>You will make a mess</h2>
+                <h6>How to cleanup your branches</h6>
+                <pre><code>
+function listLocalBranches() { g fetch --prune && git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' }
+alias gdeletelocalbranches="listLocalBranches | xargs git branch -d"
+alias gdeletelocalbranchesFORCED="listLocalBranches | xargs git branch -D"
+                </code></pre>
+            </section>
         </section>
 
     </div>
