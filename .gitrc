@@ -1,0 +1,75 @@
+#!/bin/bash
+
+alias   g='git' #'hub'
+
+alias gdemo='echo "git demo"'
+
+#Git Flow
+alias gff='git flow feature'
+alias gffs='gff start'
+alias gffp='gff publish'
+alias gfff='gff finish'
+
+#Basic Git Commands
+alias gb='g branch -vv'
+alias gc='g checkout'
+alias gci='g commit'
+alias gcommend='g commit --amend --no-edit'
+alias gt='g tag -a'
+alias gpush='g push --follow-tags'
+
+#Stashing
+alias gtsh='g stash --keep-index'           #stash only unstaged changes to tracked files
+alias gstaash='g stash --include-untracked' #stash untracked AND tracked files
+alias sstaaash='g stash --all'              #stash ignored, untracked, and tracked files
+
+#Diff
+alias gd='g diff'
+alias gds='gd --staged'
+
+
+alias gf='git fetch --prune -v'
+alias gmso='git merge --strategy-option ours'
+alias gmst='git merge --strategy-option theirs'
+alias gprune='git remote prune origin'
+
+
+
+#Branch Management
+function listLocalBranches() { g fetch --prune && git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' }
+alias gdeletelocalbranches="listLocalBranches | xargs git branch -d"
+alias gdeletelocalbranchesFORCED="listLocalBranches | xargs git branch -D"
+alias gp='git pull --ff-only' #--ff-only prevents a pull if it requires a merge or rebase
+alias gr="git checkout --" #Git 'Revert'
+alias gs='git status'
+alias gss='gs --short --branch'
+alias gu='git reset --soft HEAD~' #Undo commits made on current branch (preserve changes)
+
+## Rebasing
+alias grc='g rebase --continue'
+alias gra='g rebase --abort'
+alias grs='g rebase --skip'
+
+#Git Modules - http://blog.jacius.info/git-submodule-cheat-sheet/
+alias gmodi='git submodule update --init' #Git Module Init (pull repo content for all modules)
+
+
+# Git Repo Logging, Add '-{N}' to these commands to see the last N log entries
+# %C=color, %h=commitHash, %ad=AuthorDate, %d=ref names, %s=subject, %cn=committer name
+export gitFormat="%C(yellow)%h %Creset %ad%Cred%d  %Creset%s%Cblue [%cn]"
+alias  gl='g log --pretty=format:"$gitFormat" --decorate --date=relative'
+alias gll='g log --pretty=format:"$gitFormat" --numstat'
+alias glb="g for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+#See all the commits related to a file, with the diff of the changes
+alias gfilelog='g log -u'
+alias gfl='gfilelog'
+
+#See the diff of the last commit
+alias gdlc='g diff --cached HEAD^'
+
+#Get diff of a revision
+function gdr() { g diff "$1"^.."$1"; }
+
+#Get the long listing of a commit revision
+function glc() { gll "$1"^.."$1"; }

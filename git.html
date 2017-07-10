@@ -154,9 +154,11 @@ git clone git@github.com:CodeCounselors/jug-git.git
             </section>
             <section>
                 <h3>Checkout</h3>
+                <pre><code>git checkout -b develop</code></pre>
             </section>
             <section>
                 <h3>Branch</h3>
+                <pre><code>gc -b nates-awesome-feature</code></pre>
             </section>
             <section>
                 <h3></h3>
@@ -204,12 +206,23 @@ vi ~/.zshrc
             </section>
             <section>
                 <h2>You will make a mess</h2>
-                <h6>How to cleanup your branches</h6>
+                <h6>So make cleanup easy</h6>
                 <pre><code>
-function listLocalBranches() { g fetch --prune && git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' }
-alias gdeletelocalbranches="listLocalBranches | xargs git branch -d"
-alias gdeletelocalbranchesFORCED="listLocalBranches | xargs git branch -D"
+function listLocalBranches() {
+  git fetch --prune && git branch -r |
+    awk '{print $1}' |
+    egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) |
+    awk '{print $1}' }
+
+alias gdeletelocalbranches="listLocalBranches |
+    xargs git branch -D"
                 </code></pre>
+                <aside class="notes">
+                    Show how this happens by creating branches and deleting them elsewhere (GitHub)
+                </aside>
+            </section>
+            <section>
+                <h2>You will break things</h2>
             </section>
         </section>
 
