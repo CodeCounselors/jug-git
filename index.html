@@ -117,7 +117,7 @@
             </section>
             <section>
                 <h2>GitHub by the Numbers</h2>
-                https://octoverse.github.com/
+                <a href="https://octoverse.github.com/">2016 GitHub Octoverse Statistics</a>
             </section>
         </section>
 
@@ -162,7 +162,7 @@ git clone git@github.com:CodeCounselors/jug-git.git
             </section>
             <section>
                 <h3>Checkout</h3>
-                <pre><code>git checkout -b develop</code></pre>
+                <pre><code>git checkout develop</code></pre>
             </section>
             <section>
                 <h3>Branch</h3>
@@ -185,11 +185,17 @@ git clone git@github.com:CodeCounselors/jug-git.git
             </section>
             <section>
                 <h3>Merge</h3>
-                <pre><code>git merge develop</code></pre>
+                <h6>Merge develop onto master</h6>
+                <pre><code>
+git checkout develop
+git pull
+git checkout master
+git merge develop
+                </code></pre>
             </section>
             <section>
                 <h3>Rebase</h3>
-                <pre><code>git rebase develop</code></pre>
+                <pre><code>git rebase master</code></pre>
             </section>
         </section>
 
@@ -203,9 +209,7 @@ git clone git@github.com:CodeCounselors/jug-git.git
                 <h3>You will forget all the things</h3>
                 <h6 style="color: lawngreen" class="fragment">So remember some logical commands</h6>
                 <pre>
-                    <code class="hljs fragment" data-trim contenteditable>
-vi ~/.gitrc
-                    </code>
+                    <code class="hljs fragment" data-trim contenteditable>vi ~/.gitrc</code>
                     <code class="hljs fragment" data-trim contenteditable>
 alias   g='hub'
 #Basic Git Commands
@@ -219,6 +223,16 @@ alias gds='gd --staged'
                     <code class="hljs fragment" data-trim contenteditable>
 vi ~/.zshrc
 source ~/.gitrc
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h3>You can Undo</h3>
+                <pre>
+                    <code>
+#Undo commits made on current branch (preserve changes)
+alias gu='git reset --soft HEAD~'
                     </code>
                 </pre>
             </section>
@@ -244,8 +258,18 @@ alias gdeletelocalbranches="listLocalBranches |
             <section>
                 <h3>No one is watching your back</h3>
                 <h6 style="color: lawngreen" class="fragment">So put some safeguards in place</h6>
+                <pre><code class="hljs fragment" data-trim contenteditable>vi .git/hooks/pre-commit</code></pre>
                 <pre class="fragment"><code>
-TODO: Put git hook here
+#!/bin/bash
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+
+if [[ "$BRANCH" == "master" || "$BRANCH" == release* ]]; then
+  echo "You are on branch $BRANCH.
+        Are you sure you want to commit to this branch?"
+  echo "If so, commit with -n to bypass this pre-commit hook."
+  exit 1
+fi
                 </code></pre>
             </section>
 
@@ -261,6 +285,18 @@ TODO: Put git hook here
                 </div>
             </section>
 
+        </section>
+
+        <section>
+            <h2>Demo</h2>
+        </section>
+
+        <section>
+            <h2>Questions?</h2>
+        </section>
+
+        <section>
+            <h2>What are your Pro Git Tips?</h2>
         </section>
 
     </div>
