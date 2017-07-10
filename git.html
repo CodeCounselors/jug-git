@@ -45,7 +45,7 @@
             <h1>Subverting to Git</h1>
             <h3>Embracing the powers of Git</h3>
             <p>
-                <small>Created by <a href="http://www.codecounselor.org">Nate Good</a> / <a href="http://twitter.com/codecounselor">@codecounselor</a></small>
+                <small>Brought to you by <a href="http://www.codecounselor.org">Nate Good</a> / <a href="http://twitter.com/codecounselor">@codecounselor</a></small>
             </p>
         </section>
 
@@ -88,10 +88,10 @@
         <section>
             <h2>The Case For Git</h2>
             <ul>
-                <li>Most companies are using Git</li>
-                <li>Open Source is on GitHub</li>
-                <li>Offline Support</li>
-                <li>Better Workflows</li>
+                <li class="fragment">Most companies are using Git</li>
+                <li class="fragment">Open Source is on GitHub</li>
+                <li class="fragment">Offline Support</li>
+                <li class="fragment">Better Workflows</li>
             </ul>
             <aside class="notes">
                 <ul>
@@ -124,9 +124,10 @@
         <section>
             <h2>Git Tools</h2>
             <section>
-                <h3>Clients</h3>
+                <h6>Clients (<a href="https://git-scm.com/downloads/guis">There are so many</a>)</h6>
                 <ol>
-                    <li>Source Tree</li>
+                    <li>Command Line</li>
+                    <li><a href="https://www.sourcetreeapp.com/">Source Tree</a></li>
                     <li><a href="https://git-for-windows.github.io/">Git for Windows</a></li>
                     <li>Tortoise SVN</li>
                     <li>Git Kracken</li>
@@ -136,6 +137,13 @@
             </section>
             <section>
                 <h3>bash/zsh tab completion</h3>
+                <img src="https://user-images.githubusercontent.com/12678528/27959514-c4d241c2-62f5-11e7-9d6e-865ebf20ba2a.png">
+                <div data-markdown>
+                    <textarea data-template>
+                        - https://github.com/arialdomartini/oh-my-git
+                        - https://github.com/robbyrussell/oh-my-zsh
+                    </textarea>
+                </div>
             </section>
         </section>
 
@@ -158,28 +166,43 @@ git clone git@github.com:CodeCounselors/jug-git.git
             </section>
             <section>
                 <h3>Branch</h3>
-                <pre><code>gc -b nates-awesome-feature</code></pre>
+                <pre><code>git checkout -b nates-awesome-feature</code></pre>
             </section>
             <section>
-                <h3></h3>
+                <h3>Stash</h3>
+                <pre><code>git stash</code></pre>
+                <pre><code>git stash pop</code></pre>
             </section>
             <section>
-                <h3></h3>
+                <h3>Add + Commit</h3>
+                <pre><code>git add git.html</code></pre>
+                <pre><code>git commit git.html -m "some lovely enhancements"</code></pre>
+                <pre><code>git commit git.html -m "Fixes #1 because..."</code></pre>
             </section>
             <section>
-                <h3></h3>
+                <h3>Push</h3>
+                <pre><code>git push</code></pre>
+            </section>
+            <section>
+                <h3>Merge</h3>
+                <pre><code>git merge develop</code></pre>
+            </section>
+            <section>
+                <h3>Rebase</h3>
+                <pre><code>git rebase develop</code></pre>
             </section>
         </section>
 
         <section>
             <section>
-                <h2>Stop the Music</h2>
-                <h4>Let's Make Life Easier</h4>
+                <h2>What You Need to Know</h2>
+                <h6>And perhaps some of what you don't</h6>
             </section>
 
-                <section>
-                    <h2>We can create some aliases</h2>
-                <pre>
+            <section>
+                <h3>You will forget all the things</h3>
+                <h6 style="color: lawngreen" class="fragment">So remember some logical commands</h6>
+                <pre class="fragment">
                     <code class="hljs fragment" data-trim contenteditable>
 vi ~/.gitrc
                     </code>
@@ -196,18 +219,13 @@ alias gds='gd --staged'
                     <code class="hljs fragment" data-trim contenteditable>
 vi ~/.zshrc
                     </code>
+                </pre>
             </section>
-        </section>
 
-        <section>
             <section>
-                <h2>What You Need to Know</h2>
-                <h6>And perhaps some of what you don't</h6>
-            </section>
-            <section>
-                <h2>You will make a mess</h2>
-                <h6>So make cleanup easy</h6>
-                <pre><code>
+                <h3>Git gets messy</h3>
+                <h6 style="color: lawngreen" class="fragment">So make cleanup easy</h6>
+                <pre class="fragment"><code>
 function listLocalBranches() {
   git fetch --prune && git branch -r |
     awk '{print $1}' |
@@ -221,9 +239,27 @@ alias gdeletelocalbranches="listLocalBranches |
                     Show how this happens by creating branches and deleting them elsewhere (GitHub)
                 </aside>
             </section>
+
             <section>
-                <h2>You will break things</h2>
+                <h3>No one is watching your back</h3>
+                <h6 class="fragment">So put some safeguards in place</h6>
+                <pre class="fragment"><code>
+TODO: Put git hook here
+                </code></pre>
             </section>
+
+            <section>
+                <h3>You will break things</h3>
+                <h6 class="fragment">So have your first aid kit ready</h6>
+                <div data-markdown class="fragment">
+                    <textarea data-template>
+                        - [Git Documentation](https://git-scm.com/doc)
+                        - [Oh shit, git!](http://ohshitgit.com/)
+                        - [Git Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows)
+                    </textarea>
+                </div>
+            </section>
+
         </section>
 
     </div>
@@ -259,3 +295,13 @@ alias gdeletelocalbranches="listLocalBranches |
 
 </body>
 </html>
+
+<!--
+Live Demo
+
+- Git Clone
+- Git Checkout the develop branch
+- Create a new branch, fix an issue, open a pull request
+-
+
+-->
