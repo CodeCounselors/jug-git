@@ -202,7 +202,7 @@ git clone git@github.com:CodeCounselors/jug-git.git
             <section>
                 <h3>You will forget all the things</h3>
                 <h6 style="color: lawngreen" class="fragment">So remember some logical commands</h6>
-                <pre class="fragment">
+                <pre>
                     <code class="hljs fragment" data-trim contenteditable>
 vi ~/.gitrc
                     </code>
@@ -218,6 +218,7 @@ alias gds='gd --staged'
                     </code>
                     <code class="hljs fragment" data-trim contenteditable>
 vi ~/.zshrc
+source ~/.gitrc
                     </code>
                 </pre>
             </section>
@@ -242,7 +243,7 @@ alias gdeletelocalbranches="listLocalBranches |
 
             <section>
                 <h3>No one is watching your back</h3>
-                <h6 class="fragment">So put some safeguards in place</h6>
+                <h6 style="color: lawngreen" class="fragment">So put some safeguards in place</h6>
                 <pre class="fragment"><code>
 TODO: Put git hook here
                 </code></pre>
@@ -250,7 +251,7 @@ TODO: Put git hook here
 
             <section>
                 <h3>You will break things</h3>
-                <h6 class="fragment">So have your first aid kit ready</h6>
+                <h6 style="color: lawngreen" class="fragment">So have your first aid kit ready</h6>
                 <div data-markdown class="fragment">
                     <textarea data-template>
                         - [Git Documentation](https://git-scm.com/doc)
@@ -297,11 +298,26 @@ TODO: Put git hook here
 </html>
 
 <!--
-Live Demo
+
+## Slides
+
+
+## Live Demo
 
 - Git Clone
 - Git Checkout the develop branch
-- Create a new branch, fix an issue, open a pull request
--
+- Create a new branch, fix an issue on multiple commits
+- Squash the commits (rebase)
+- Open a GitHub pull request (PR)
+- Git amend and force push
+- Merge and delete branch from GitHub
+- Demonstrate listLocalBranches, cleanup
+
+
+## Time Permitting
+- Walk through my .gitrc
+
+## Based on Demand
+- Forking
 
 -->
