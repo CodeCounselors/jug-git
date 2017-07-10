@@ -192,10 +192,21 @@ git pull
 git checkout master
 git merge develop
                 </code></pre>
+                <a href="https://www.atlassian.com/git/tutorials/git-merge">Visual Example</a>
             </section>
             <section>
                 <h3>Rebase</h3>
                 <pre><code>git rebase master</code></pre>
+
+                <h6 class="fragment">Interactive (squash)</h6>
+                <pre class="fragment"><code>
+d312115  9 hours ago (HEAD -> master)  ...
+06e5f8d  18 hours ago  moved file
+0d0548e  18 hours ago  minor changes before rename ...
+bccbfea  19 hours ago (origin/develop)  more content ...
+                </code></pre>
+                <pre class="fragment"><code>git rebase -i bccbfea</code></pre>
+                <a class="fragment" href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">Visual Example</a>
             </section>
         </section>
 
